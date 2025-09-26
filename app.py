@@ -25,6 +25,7 @@ except:
 def preprocess_image(image):
     """Preprocess image for model prediction"""
     # Resize image to model input size (adjust dimensions as needed)
+    image = image.convert('RGB')
     image = image.resize((224, 224))
     # Convert to array
     image_array = np.array(image)
