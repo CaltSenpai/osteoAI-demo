@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OsteoAI - Osteoarthritis Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <h1> OsteoAI</h1>
+        </div>
+    </nav>
+
+    <main>
+        <section class="prediction-container">
+            <h1>AI Osteoarthritis Prediction</h1>
+            <p>Upload a medical image (X-ray, MRI, CT scan) for AI-powered analysis</p>
+
+            <div class="upload-section">
+                <form id="uploadForm" enctype="multipart/form-data">
+                    <div class="file-input-container">
+                        <input type="file" id="imageInput" name="image" accept="image/*" required>
+                        <label for="imageInput" class="file-input-label">
+                            <div class="upload-icon">📁</div>
+                            <span>Choose a medical image to upload</span>
+                            <small>JPG, PNG, JPEG &middot; Max 16MB</small>
+                            <div class="upload-instruction">Click or drag and drop your image here</div>
+                        </label>
+                    </div>
+                    
+                    <div id="imagePreview" class="image-preview"></div>
+                    
+                    <button type="submit" id="predictBtn" class="predict-button" disabled>
+                        🔍 Analyze Image
+                    </button>
+                </form>
+            </div>
+
+            <div id="loadingIndicator" class="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>🔄 Analyzing image with AI...</p>
+                <small>This may take a few seconds</small>
+            </div>
+
+            <div id="results" class="results" style="display: none;">
+                <h3>📋 Analysis Results</h3>
+                <div class="result-content">
+                    <div class="result-item">
+                        <span class="label">🩺 Diagnosis:</span>
+                        <span id="resultText" class="value"></span>
+                    </div>
+                    <div class="result-item">
+                        <span class="label">📊 Confidence Level:</span>
+                        <span id="confidenceText" class="value"></span>
+                    </div>
+                    <div class="result-item">
+                        <span class="label">🕒 Analysis Time:</span>
+                        <span id="analysisTime" class="value"></span>
+                    </div>
+                </div>
+                <div class="result-actions">
+                    <button id="newAnalysis" class="secondary-button">🔄 Analyze Another Image</button>
+                    <button id="downloadReport" class="download-button">📄 Download Report</button>
+                </div>
+            </div>
+
+            <div class="instructions">
+                <h3>📝 Instructions for Best Results</h3>
+                <ul>
+                    <li>Use high-quality medical images (X-rays, MRI, CT scans)</li>
+                    <li>Ensure the image is clear and properly oriented</li>
+                    <li>Focus on joint areas (knees, hips, hands, spine)</li>
+                    <li>Avoid blurry or low-resolution images</li>
+                </ul>
+            </div>
+
+            <div class="disclaimer">
+                <h4>⚠️ Important Medical Disclaimer</h4>
+                <p>This AI tool is designed for educational and research purposes only. It should never be used as a substitute for professional medical diagnosis, treatment, or advice. Always consult with qualified healthcare providers for proper medical evaluation, diagnosis, and treatment of any health concerns.</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/prediction.js') }}"></script>
+</body>
+</html>
